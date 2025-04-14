@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # In[1]:
-
-
 import sys
 import os
 import cv2
@@ -22,8 +20,6 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 
 # In[2]:
-
-
 # Create attendance file
 attendance_file = "attendance.csv"
 if not os.path.exists(attendance_file):
@@ -32,23 +28,17 @@ if not os.path.exists(attendance_file):
 
 
 # In[3]:
-
-
 # Load face detector
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 
 # In[4]:
-
-
 # Load known faces
 known_faces_dir = "known_faces"
 known_faces = {}
 
 
 # In[5]:
-
-
 # Precompute face embeddings
 for person_name in os.listdir(known_faces_dir):
     person_path = os.path.join(known_faces_dir, person_name)
@@ -67,8 +57,6 @@ for person_name in os.listdir(known_faces_dir):
 
 
 # In[6]:
-
-
 class MainPage(QWidget):
     def __init__(self, stacked_widget, camera_page, stats_page, register_page):
         super().__init__()
@@ -169,8 +157,6 @@ class MainPage(QWidget):
 
 
 # In[7]:
-
-
 class CameraPage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
@@ -287,8 +273,6 @@ class CameraPage(QWidget):
 
 
 # In[8]:
-
-
 class StatisticsPage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
@@ -472,8 +456,6 @@ class StatisticsPage(QWidget):
 
 
 # In[9]:
-
-
 class RegisterPage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
@@ -619,10 +601,7 @@ class RegisterPage(QWidget):
             self.cap = None
         self.stacked_widget.setCurrentIndex(0)
 
-
 # In[ ]:
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     stacked_widget = QStackedWidget()
@@ -640,16 +619,4 @@ if __name__ == '__main__':
     stacked_widget.show()
     cv2.destroyAllWindows()
     sys.exit(app.exec_())
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
