@@ -288,11 +288,3 @@ This project is open-source and available for educational purposes.
 **Lilvamp237**  
 GitHub: [@Lilvamp237](https://github.com/Lilvamp237)
 
----
-
-## 🙏 Acknowledgments
-
-- **DeepFace** - For providing easy-to-use face recognition models
-- **OpenCV** - For computer vision capabilities
-- **PyQt5** - For the GUI framework
-
