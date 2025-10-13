@@ -1,0 +1,21 @@
+# Face Recognition Attendance System - Dependencies
+
+# Core ML/CV Libraries
+opencv-python>=4.8.0
+deepface>=0.0.79
+numpy>=1.24.0
+scipy>=1.10.0
+
+# GUI Framework
+PyQt5>=5.15.0
+
+# Visualization
+matplotlib>=3.7.0
+
+# Deep Learning Backend (required by DeepFace)
+tf-keras>=2.15.0
+tensorflow>=2.15.0
+
+# Additional DeepFace dependencies
+Pillow>=9.0.0
+pandas>=1.5.0

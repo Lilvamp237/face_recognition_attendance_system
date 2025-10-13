@@ -69,3 +69,230 @@ Users can:
 
 ### 💾 Secure & Efficient Data Handling
 - Stores user images and attendance records locally for tracking and auditing
+
+
+---
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Python 3.8+** ([Download here](https://www.python.org/downloads/))
+- **pip** (Python package manager)
+- **Webcam** (for real-time face detection)
+- **Git** (optional, for cloning the repository)
+
+---
+
+## 🚀 Installation & Setup
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/Lilvamp237/face_recognition_attendance_system.git
+cd face_recognition_attendance_system
+```
+
+### 2️⃣ Create a Virtual Environment (Recommended)
+**On Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**On macOS/Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3️⃣ Install Required Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+> ⚠️ **Note:** The first run will take some time as DeepFace downloads the pre-trained Facenet512 model (~100MB).
+
+### 4️⃣ Create Required Directories
+```bash
+mkdir known_faces
+```
+
+### 5️⃣ (Optional) Add the Kiosk Image
+The system expects a `Kiosk-Mode.png` image in the root directory for the main page UI. You can either:
+- Add your own image named `Kiosk-Mode.png`, or
+- The system will still work without it (the image label will just be empty)
+
+---
+
+## 🏗️ Project Structure
+
+```
+face_recognition_attendance_system/
+│
+├── attendance_system.py          # Main Python script (GUI application)
+├── attendance_system.ipynb       # Jupyter notebook version
+├── requirements.txt              # Python dependencies
+├── README.md                     # Project documentation
+├── .gitignore                    # Git ignore rules
+│
+├── known_faces/                  # User face images (created on first registration)
+│   ├── PersonName1/
+│   │   ├── 1.jpg
+│   │   ├── 2.jpg
+│   │   └── ...
+│   └── PersonName2/
+│       └── ...
+│
+├── attendance.csv                # Attendance records (auto-generated)
+└── Kiosk-Mode.png               # (Optional) Main page display image
+```
+
+---
+
+## ▶️ How to Run
+
+### Method 1: Run Python Script
+```bash
+python attendance_system.py
+```
+
+### Method 2: Run Jupyter Notebook
+```bash
+jupyter notebook attendance_system.ipynb
+```
+Then run all cells in the notebook.
+
+---
+
+## 🎯 Usage Guide
+
+### Step 1: Launch the Application
+Run `python attendance_system.py` - the main dashboard will appear.
+
+### Step 2: Register a New User 📝
+1. Click **"Register New User"**
+2. Enter your name when prompted
+3. Allow camera access
+4. The system will capture **5 photos** from different angles
+5. Move your face slightly for better coverage
+6. Your face data is now saved!
+
+### Step 3: Mark Attendance 🕵️
+1. Click **"Mark Attendance"**
+2. Face the camera
+3. System will automatically detect and recognize your face
+4. If matched, attendance is marked (once per day)
+5. You'll see a confirmation message
+
+### Step 4: View Statistics 📈
+1. Click **"View Statistics"**
+2. Select your name from the dropdown
+3. See your attendance history for the past 7 days
+4. View detailed records in a table format
+
+---
+
+## 🛠️ Troubleshooting
+
+### Issue: "No module named 'cv2'" or similar import errors
+**Solution:** Make sure you activated the virtual environment and installed dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+### Issue: Camera not detected
+**Solution:** 
+- Ensure your webcam is connected and not being used by another application
+- Check camera permissions in your OS settings
+- Try restarting the application
+
+### Issue: Face not recognized even after registration
+**Solution:**
+- Ensure good lighting conditions
+- Face the camera directly
+- Try registering again with clearer photos
+- Check that your photos are saved in `known_faces/YourName/`
+
+### Issue: "Could not extract embedding" errors
+**Solution:**
+- This usually happens with poor quality images
+- Ensure faces are clearly visible in registration photos
+- Avoid extreme angles or obstructions
+
+### Issue: Slow performance on first run
+**Solution:**
+- DeepFace downloads AI models on first run (~100MB)
+- Subsequent runs will be much faster
+- Be patient during initial setup
+
+---
+
+## 🔧 Configuration
+
+### Change Face Recognition Model
+Edit line 52 in `attendance_system.py`:
+```python
+# Current: Facenet512 (most accurate, slower)
+embedding = DeepFace.represent(img_path, model_name="Facenet512", enforce_detection=False)[0]['embedding']
+
+# Alternatives:
+# embedding = DeepFace.represent(img_path, model_name="Facenet", enforce_detection=False)[0]['embedding']    # Faster
+# embedding = DeepFace.represent(img_path, model_name="ArcFace", enforce_detection=False)[0]['embedding']    # Good balance
+# embedding = DeepFace.represent(img_path, model_name="SFace", enforce_detection=False)[0]['embedding']      # Fastest
+```
+
+---
+
+## 📊 Data Files
+
+### attendance.csv
+Stores attendance records in format:
+```
+Name,Time
+John Doe,2025-10-13 09:30:15
+Jane Smith,2025-10-13 09:32:45
+```
+
+### known_faces/
+Directory structure for registered users:
+```
+known_faces/
+  ├── John Doe/
+  │     ├── 1.jpg
+  │     ├── 2.jpg
+  │     ├── 3.jpg
+  │     ├── 4.jpg
+  │     └── 5.jpg
+  └── Jane Smith/
+        └── ...
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
+
+---
+
+## 📄 License
+
+This project is open-source and available for educational purposes.
+
+---
+
+## 👨‍💻 Author
+
+**Lilvamp237**  
+GitHub: [@Lilvamp237](https://github.com/Lilvamp237)
+
+---
+
+## 🙏 Acknowledgments
+
+- **DeepFace** - For providing easy-to-use face recognition models
+- **OpenCV** - For computer vision capabilities
+- **PyQt5** - For the GUI framework
+

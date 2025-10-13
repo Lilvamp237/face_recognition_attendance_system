@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific
+attendance.csv
+known_faces/
+*.jpg
+*.jpeg
+*.png
+!Kiosk-Mode.png
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# TensorFlow/Keras
+*.h5
+*.hdf5
+.keras/
+
+# DeepFace weights
+*.pb
+*.pth
+weights/
